@@ -44,7 +44,7 @@ import { Icon } from 'astro-icon/components';
             )}
           </div>
             <div>
-              {highlights && Array.isArray(highlights) && highlights.map(
+              {highlights && Array.isArray(highlights) && (highlights as string[]).map(
                 (highlight: string) =>
                   <span class="text-gray-600">{highlight.slice(3)}. </span> //Slice to remove emojis, remove if you don't use emojis
               )}
