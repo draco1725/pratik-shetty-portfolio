@@ -123,9 +123,9 @@ const breadcrumbSchema = {
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.webp" />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml"/>
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} type="image/x-icon"/>
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}apple-touch-icon.webp`} />
     
     <!-- Preload critical assets -->
     <link rel="preload" as="image" href={image} />

@@ -23,7 +23,7 @@ const { city, region, address } = location
               class='scale-110 sm:grayscale sm:scale-100 transition-all sm:group-hover:scale-110 sm:group-hover:grayscale-0'
               height={600}
               width={600}
-              src={image}
+              src={`${import.meta.env.BASE_URL}${image}`}
               alt={`Profile of ${name}`}
               loading='eager' />
           )}
@@ -80,7 +80,7 @@ const { city, region, address } = location
           }
         </div>
         <a
-          href="/Pratik-Shetty-CyberSecurity_Analyst-Resume.pdf"
+          href={`${import.meta.env.BASE_URL}Pratik-Shetty-CyberSecurity_Analyst-Resume.pdf`}
           download="Pratik-Shetty-CyberSecurity_Analyst-Resume.pdf"
           class="flex h-40 w-40 flex-col place-items-center rounded-3xl sm:bg-skin-muted p-4 transition-all rotate-0 bg-skin-muted  sm:hover:bg-skin-button-accent text-skin-hue sm:hover:text-skin-inverted max-sm:hidden print:hidden" 
           data-ccursor="lift"
