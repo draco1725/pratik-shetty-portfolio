@@ -29,7 +29,7 @@ export default defineConfig({
       },
     })
   ],
-  output: 'server',
-  adapter: vercel(),
+  output: 'static',
+  // adapter: vercel(),
   
 });
