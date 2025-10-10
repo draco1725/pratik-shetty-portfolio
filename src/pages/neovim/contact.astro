@@ -4,27 +4,29 @@ import {basics} from '@cv';
 
 const {email: rawEmail, profiles} = basics;
 
-const emailBody = rawEmail.split('@')[0];
-const emailDomain = rawEmail.split('@')[1].split('.')[0];
-const emailExtension = rawEmail.split('@')[1].split('.')[1];
+const emailBody = rawEmail ? rawEmail.split('@')[0] : '';
+const emailDomain = rawEmail ? rawEmail.split('@')[1]?.split('.')[0] : '';
+const emailExtension = rawEmail ? rawEmail.split('@')[1]?.split('.')[1] : '';
 
-const parsedProfiles = profiles.map(({url}) => {
+const parsedProfiles = profiles?.map(({url}) => {
+  if (!url) return null;
   const rawUrl = url;
+  let processedUrl = url;
   
-  if (url.includes('https://')) {
-    url = url.split('https://')[1];
+  if (processedUrl.includes('https://')) {
+    processedUrl = processedUrl.split('https://')[1];
   }
   
-  if (url.includes('www.')) {
-    url = url.split('www.')[1];
+  if (processedUrl.includes('www.')) {
+    processedUrl = processedUrl.split('www.')[1];
   }
   
-  const domain = url.split('.')[0];
-  const extension = url.split('.')[1].split('/')[0];
-  const params: Array<string> = url.split('.')[1].split('/').slice(1);
+  const domain = processedUrl.split('.')[0] || '';
+  const extension = processedUrl.split('.')[1]?.split('/')[0] || '';
+  const params: Array<string> = processedUrl.split('.')[1]?.split('/').slice(1) || [];
   
   return {url: rawUrl, domain, extension, params};
-});
+})?.filter(profile => profile !== null) || [];
 ---
 
 <Layout title="Contact">
