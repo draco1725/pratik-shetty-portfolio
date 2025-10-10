@@ -58,7 +58,7 @@ import { projects } from "@cv";
                 {description}
               </p>
               <ul class='z-10 mt-1 text-sm'>
-                {highlights && highlights.map((highlight: string) => {
+                {highlights && Array.isArray(highlights) && highlights.map((highlight: string) => {
                   return <li data-ccursor class="w-max">{highlight}</li>;
                 })}
               </ul>
