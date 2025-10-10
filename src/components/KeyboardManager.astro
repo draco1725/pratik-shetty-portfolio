@@ -15,6 +15,9 @@ const SOCIAL_ICONS: SocialIcon = {
 `,
 	  "X / Twitter": `
 <svg fill="currentColor" stroke="currentColor" height="16" stroke-width="0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z"></path></svg
+> `,
+  Twitter: `
+<svg fill="currentColor" stroke="currentColor" height="16" stroke-width="0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z"></path></svg
 > `
 }
 
@@ -62,87 +65,97 @@ const profilesInfo = profiles.map(({ network, url }) => {
   import HotKeyPad from 'hotkeypad'
   import { basics } from '@cv'
 
-  const hotkeypad = new HotKeyPad()
-  const info = hotkeypad.instance.getAttribute('data-info') ?? '[]'
-  const parsedInfo = JSON.parse(info) as Info[]
-  const { email } = basics
+  window.addEventListener('load', () => {
+    try {
+      const hotkeypad = new HotKeyPad()
+      const info = hotkeypad.instance?.getAttribute('data-info') ?? '[]'
+      const parsedInfo = JSON.parse(info) as Info[]
+      const { email } = basics
 
-  const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
-    return {
-      id,
-      title,
-      icon,
-      hotkey,
-      section,
-      handler: () => {
-        window.open(url, '_blank')
-      },
-    }
-  })
-  hotkeypad.setCommands([
-    {
-      id: 'theme',
-      title: 'Toggle Dark Mode',
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C17.5228 1.9967 22 6.47386 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967ZM12 19.9967C16.4183 19.9967 20 16.415 20 11.9967C20 7.57843 16.4183 3.9967 12 3.9967C7.58172 3.9967 4 7.57843 4 11.9967C4 16.415 7.58172 19.9967 12 19.9967ZM7.00035 15.316C9.07995 15.1646 11.117 14.2939 12.7071 12.7038C14.2972 11.1137 15.1679 9.07666 15.3193 6.99706C15.6454 7.21408 15.955 7.46642 16.2426 7.75406C18.5858 10.0972 18.5858 13.8962 16.2426 16.2393C13.8995 18.5825 10.1005 18.5825 7.75736 16.2393C7.46971 15.9517 7.21738 15.6421 7.00035 15.316Z"></path></svg>`,
-      hotkey: 'ctrl+O',
-      section: 'Actions',
-      handler: () => {
-        const button = document.getElementById('themeSwitch')
-        button?.click()
-      },
-    },
-    {
-      id: 'print',
-      title: 'Print Resume',
-      icon: `<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
-</svg>`,
-      hotkey: 'ctrl+P',
-      section: 'Actions',
-      handler: () => {
-        window.open("/anmol.pdf","_blank")
-      },
-    },
-    {
-      id: 'contact',
-      title: 'Contact Me',
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z" fill="currentColor"></path> </g></svg>`,
-      hotkey: 'ctrl+E',
-      section: 'Actions',
-      handler: () => {
-        if (email && email.length > 0) {
-          window.open(`mailto:${email}`)
-        } else {
-          alert('Email not provided')
+      const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
+        return {
+          id,
+          title,
+          icon,
+          hotkey,
+          section,
+          handler: () => {
+            window.open(url, '_blank')
+          },
         }
-      },
-    },
-    ...data,
-  ])
-
-  document.querySelectorAll('.footer-button').forEach(button => {
-    button.addEventListener('click', () => {
-      let event = new KeyboardEvent('keydown', {
-        key: 'K',
-        code: 'KeyK',
-        ctrlKey: true,
-        altKey: false,
-        shiftKey: false,
-        metaKey: false,
       })
-      document.dispatchEvent(event)
-    })
-  })
-  
-  document.querySelectorAll("#hotkeypad li").forEach(li => {
-	  li.setAttribute("data-ccursor", "lift");
-		li.classList.add("modified-cursor-none");
-  });
-  document.querySelectorAll("#hotkeypad footer > p").forEach(li => {
-	  li.setAttribute("data-ccursor", "");
-  });
-  document.querySelectorAll("#hotkeypad li > div").forEach(li => {
-	  li.setAttribute("data-ccursor", "");
+      
+      hotkeypad.setCommands([
+        {
+          id: 'theme',
+          title: 'Toggle Dark Mode',
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C17.5228 1.9967 22 6.47386 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967ZM12 19.9967C16.4183 19.9967 20 16.415 20 11.9967C20 7.57843 16.4183 3.9967 12 3.9967C7.58172 3.9967 4 7.57843 4 11.9967C4 16.415 7.58172 19.9967 12 19.9967ZM7.00035 15.316C9.07995 15.1646 11.117 14.2939 12.7071 12.7038C14.2972 11.1137 15.1679 9.07666 15.3193 6.99706C15.6454 7.21408 15.955 7.46642 16.2426 7.75406C18.5858 10.0972 18.5858 13.8962 16.2426 16.2393C13.8995 18.5825 10.1005 18.5825 7.75736 16.2393C7.46971 15.9517 7.21738 15.6421 7.00035 15.316Z"></path></svg>`,
+          hotkey: 'ctrl+O',
+          section: 'Actions',
+          handler: () => {
+            const button = document.getElementById('themeSwitch')
+            button?.click()
+          },
+        },
+        {
+          id: 'print',
+          title: 'Print Resume',
+          icon: `<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" /></svg>`,
+          hotkey: 'ctrl+P',
+          section: 'Actions',
+          handler: () => {
+            window.open("/Pratik-Shetty-CyberSecurity_Analyst-Resume.pdf","_blank")
+          },
+        },
+        {
+          id: 'contact',
+          title: 'Contact Me',
+          icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z" fill="currentColor"></path> </g></svg>`,
+          hotkey: 'ctrl+E',
+          section: 'Actions',
+          handler: () => {
+            if (email && email.length > 0) {
+              window.open(`mailto:${email}`)
+            } else {
+              alert('Email not provided')
+            }
+          },
+        },
+        ...data,
+      ])
+
+      // Setup footer button click handlers
+      document.querySelectorAll('.footer-button').forEach(button => {
+        button.addEventListener('click', () => {
+          let event = new KeyboardEvent('keydown', {
+            key: 'K',
+            code: 'KeyK',
+            ctrlKey: true,
+            altKey: false,
+            shiftKey: false,
+            metaKey: false,
+          })
+          document.dispatchEvent(event)
+        })
+      })
+      
+      // Setup cursor attributes
+      setTimeout(() => {
+        document.querySelectorAll("#hotkeypad li").forEach(li => {
+          li.setAttribute("data-ccursor", "lift");
+          li.classList.add("modified-cursor-none");
+        });
+        document.querySelectorAll("#hotkeypad footer > p").forEach(li => {
+          li.setAttribute("data-ccursor", "");
+        });
+        document.querySelectorAll("#hotkeypad li > div").forEach(li => {
+          li.setAttribute("data-ccursor", "");
+        });
+      }, 100);
+      
+    } catch (error) {
+      console.error('HotKeyPad initialization error:', error);
+    }
   });
 </script>
 

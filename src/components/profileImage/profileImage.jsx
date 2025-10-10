@@ -19,7 +19,7 @@ function ProfileImage() {
   };
 
   const [config, setConfig] = useState({
-    imageSrc: '/pfp.jpeg',
+    imageSrc: '',
     particleGap: 3,
     mouseForce: 100,
     gravity: 0.1,
@@ -47,14 +47,7 @@ function ProfileImage() {
     }
   }, [config]);
 
-  return (
-    <div>
-      <div
-        ref={containerRef}
-        className="bg-black mx-auto w-[100px] sm:auto "
-      />
-    </div>
-  );
+  return null;
 }
 
 export default ProfileImage;

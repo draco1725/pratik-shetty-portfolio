@@ -18,24 +18,23 @@ const {
   image = CV.basics.image,
   canonicalURL = CV.basics.url,
   keywords = [
-    "Anmol Singh",
-    "AJ Dev",
-    "Anmol Pro",
-    "Full Stack Developer",
-    "Frontend Developer",
-    "Backend Developer",
-    "Web Developer",
-    "Software Engineer",
-    "React Developer",
-    "Next.js Developer",
-    "TypeScript Developer",
-    "Go Developer",
-    "Panipat",
-    "India",
+    "Pratik Shetty",
+    "Security Researcher",
+    "Cybersecurity Analyst",
+    "Penetration Tester",
+    "Bug Bounty Hunter",
+    "Red Team Analyst",
+    "MCRTA",
+    "CRTO",
+    "CRTP",
+    "eCPPTv2",
+    "CEH",
+    "York",
+    "United Kingdom",
     "Portfolio",
-    "E-commerce Projects",
-    "Music App",
-    "Social Media App"
+    "CVE Research",
+    "Application Security",
+    "Mobile Security"
   ]
 } = Astro.props;
 
@@ -43,14 +42,14 @@ const { url, theme, name, location } = CV.basics;
 const { city, region } = location;
 
 // Create a more detailed description
-const detailedDescription = `Anmol Singh (AJ Dev) - Full Stack Developer. Explore my portfolio, projects, and contact info. Frontend, backend, and more.`;
+const detailedDescription = `Pratik Shetty - Security Researcher & Cybersecurity Analyst. Explore my portfolio, CVE research, bug bounty achievements, and cybersecurity expertise.`;
 
 // Create structured data for better SEO
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": name,
-  "alternateName": "AJ Dev",
+  "alternateName": "Security Researcher",
   "jobTitle": CV.basics.label,
   "url": url,
   "email": CV.basics.email,
@@ -63,7 +62,7 @@ const structuredData = {
     "@type": "PostalAddress",
     "addressLocality": city,
     "addressRegion": region,
-    "addressCountry": "IN"
+    "addressCountry": "GB"
   },
   "knowsAbout": CV.skills.map(skill => skill.name),
   "worksFor": CV.work?.map(work => ({
@@ -117,13 +116,14 @@ const breadcrumbSchema = {
     <meta name="description" content={detailedDescription} />
     <meta name="author" content={name} />
     <meta name="keywords" content={keywords.join(", ")} />
-    <meta name="geo.region" content="IN-HR" />
+    <meta name="geo.region" content="GB-YOR" />
     <meta name="geo.placename" content={city} />
     
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="apple-touch-icon" href="/apple-touch-icon.webp" />
     
@@ -137,7 +137,7 @@ const breadcrumbSchema = {
     <meta property="og:description" content={detailedDescription} />
     <meta property="og:image" content={image} />
     <meta property="og:site_name" content={`${name}'s Portfolio`} />
-    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale" content="en_GB" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -146,7 +146,7 @@ const breadcrumbSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={detailedDescription} />
     <meta name="twitter:image" content={image} />
-    <meta name="twitter:creator" content={CV.basics.profiles.find(p => p.network === 'X / Twitter')?.username} />
+    <meta name="twitter:creator" content={CV.basics.profiles.find(p => p.network === 'Twitter')?.username} />
     
     <!-- Additional meta tags -->
     <meta name="theme-color" content={theme === 'dark' ? '#1a1a1a' : '#ffffff'} />

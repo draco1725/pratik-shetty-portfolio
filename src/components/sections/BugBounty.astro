@@ -1,0 +1,31 @@
+---
+import Section from '../Section.astro'
+import { Icon } from 'astro-icon/components'
+
+import { bugbounty } from '@cv'
+---
+
+{
+  bugbounty && bugbounty.length > 0 && (
+    <Section className={Astro.props.className} title='Bug Bounty'>
+      <div class='space-y-6 py-3'>
+        {bugbounty.map(({ category, organizations }) => (
+          <div>
+            <h4 class='mb-3 font-semibold text-skin-hue'>{category}</h4>
+            <ul class='space-y-2'>
+              {organizations.map(({ name, icon, description }) => (
+                <li class='flex items-center gap-3'>
+                  <Icon name={icon} class='h-5 w-5 text-skin-hue' />
+                  <div>
+                    <span class='font-medium text-skin-base'>{name}</span>
+                    <p class='text-sm text-skin-muted'>{description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Section>
+  )
+}

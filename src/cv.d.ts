@@ -10,6 +10,9 @@ export interface CV {
   interests?: Array<Interests>;
   references?: Array<Reference>;
   projects?: Array<Project>;
+  bugbounty?: Array<BugBounty>;
+  cve?: Array<CVE>;
+  speaking?: Array<Speaking>;
 }
 
 interface Basics {
@@ -109,3 +112,29 @@ interface Reference {
 }
 
 type Highlights = Array<String>;
+
+interface BugBounty {
+  category: string;
+  organizations: Array<{
+    name: string;
+    icon: string;
+    description: string;
+  }>;
+}
+
+interface CVE {
+  organization: string;
+  cves: Array<{
+    id: string;
+    year: string;
+    description: string;
+  }>;
+}
+
+interface Speaking {
+  event: string;
+  location: string;
+  date: DateStr;
+  topic: string;
+  description: string;
+}
