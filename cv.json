@@ -420,6 +420,11 @@
           "description": "3 times Hall of Fame recognition"
         },
         {
+          "name": "University of York",
+          "icon": "simple-icons:school",
+          "description": "Hall of Fame (January 2026)"
+        }
+        {
           "name": "Oracle",
           "icon": "simple-icons:oracle",
           "description": "Hall of Fame (October 2022)"
