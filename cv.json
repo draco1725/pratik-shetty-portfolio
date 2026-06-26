@@ -542,6 +542,11 @@
           "id": "CVE-2022-36022",
           "year": "2022",
           "description": "Security vulnerability in Eclipse project"
+        },
+        {
+          "id": "CVE-2026-55576",
+          "year": "2026",
+          "description": "Security vulnerabilities in MaaAssistantArknights project"
         }
       ]
     },
